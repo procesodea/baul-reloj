@@ -8,4 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - run: curl -fsS -m 90 -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" https://baul-movil.vercel.app/api/cron/programados
+      - name: Despertar al Baul movil
+        env:
+          SEC: ${{ secrets.CRON_SECRET }}
+        run: |
+          curl -fsS -m 90 -H "Authorization: Bearer $SEC" https://baul-movil.vercel.app/api/cron/programados
